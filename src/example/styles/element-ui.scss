@@ -1,0 +1,201 @@
+﻿// element-ui全局样式改写
+.el-dialog__footer {
+    border-top: #E4EFF7 solid 1px;
+    padding: 12px;
+}
+
+.el-dialog__header {
+    border-bottom: 1px solid #e9eaec;
+    padding: 14px 16px;
+    line-height: 1;
+}
+
+.el-dialog__body {
+    font-size: 12px;
+    padding: 20px 20px 10px 20px;
+}
+
+.el-input--small {
+    font-size: 12px;
+}
+
+.el-form-item--mini.el-form-item, .el-form-item--small.el-form-item {
+    margin-bottom: 12px;
+}
+
+.el-table {
+    font-size: 12px;
+    th {
+        background-color: #ecf1f6;
+        padding: 5px 0;
+        .cell {
+            line-height: 26px;
+        }
+    }
+
+}
+.el-form-item__error {
+    position: inherit;
+}
+
+.sidebar .el-scrollbar__wrap {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.el-input__inner {
+    line-height: normal;
+}
+
+.img-form {
+    .el-form-item__content {
+        line-height: 1;
+    }
+}
+
+.el-table__expanded-cell {
+    padding: 20px 30px;
+}
+
+.el-table .table-header {
+    background: #f5f7fa;
+}
+
+.el-select {
+    width: 100%;
+}
+
+.el-badge__content {
+    background: #ff8800;
+    border: 0px;
+}
+
+.el-breadcrumb__separator {
+    font-weight: 400;
+}
+
+.el-button--primary {
+    background: #2C9CEA;
+}
+.el-table__empty-text{
+    font-size: 14px;
+}
+/*页码*/
+
+.el-pagination .el-pager .number, .el-pagination .btn-prev, .el-pagination .btn-next, .el-pagination .btn-prev {
+    background: #fff;
+    border: #D1DBE5 solid 1px;
+    padding: 0px 4px;
+    color: #666;
+    font-weight: normal;
+    min-width: 28px;
+}
+
+.el-form-item.is-error .vue-treeselect__control{
+    border-color: #f56c6c;
+}
+.el-pagination .el-pager .number {
+    margin-left: -1px;
+}
+
+.el-pagination .el-pager .number.active {
+    border-color: #209EFF;
+    background: #209EFF;
+    color: #fff;
+}
+
+.el-pagination .btn-prev {
+    border-left: #D1DBE5 solid 1px;
+    border-right: 0px;
+    border-radius: 3px 0px 0px 3px;
+}
+
+.el-pagination .btn-next {
+    border-left: 0px;
+    border-radius: 0px 3px 3px 0px;
+}
+
+/*弹窗*/
+.el-dialog__header {
+    padding: 10px 16px;
+    background: #F6FAFD;
+    border-bottom: #E4EFF7 solid 1px;
+    color: #44667f
+}
+
+.el-dialog__header .el-dialog__title {
+    color: #44667f;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/*tab切换样式*/
+.el-tabs--border-card {
+    box-shadow: none;
+    >.el-tabs__content{
+        padding: 12px;
+    }
+}
+
+
+/*表格样式*/
+.el-table {
+    margin: 15px 0;
+    &:before {
+        background-color: transparent !important;
+    }
+    th,td {
+        padding-left: 5px;
+    }
+    th{
+        line-height: 32px;
+    }
+}
+
+
+// tooltip最大宽度限制
+.el-tooltip__popper{
+    max-width: 400px !important;
+}
+
+.vue-treeselect__menu{
+    z-index: 100;
+}
+.el-loading-spinner{
+    font-size: 32px;
+    i,.el-loading-text {
+        color: #fff;
+    }
+}
+
+.el-table--striped .el-table__body tr.el-table__row--striped.current-row td,
+.el-table__body tr.current-row>td,
+.el-table__body tr.current-row:hover>td,
+.el-table__body tr.hover-row.current-row>td,
+.el-table__body tr.hover-row.el-table__row--striped.current-row>td{
+    background-color: #bed9f7;
+}
+
+.el-table__footer-wrapper{
+    .el-table__footer{
+        font-size: 14px;
+        font-weight: bold;
+    }
+}
+//下属企业样式
+.left-tree{
+    .el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content{
+        background-color: #399cff;
+        color: #fff;
+    }
+    .el-tree-node__content{
+        padding-right: 12px;
+    }
+    .el-tree-node__label{
+        font-size: 12px;
+    }
+    .el-tree-node__expand-icon{
+        margin-left: 12px;
+    }
+}
+

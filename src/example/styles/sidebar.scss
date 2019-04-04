@@ -1,0 +1,97 @@
+// 侧边栏
+// 菜单栏css重置
+
+.sidebar-container{
+    $bc: #28304b;
+    .el-submenu{
+        border-bottom:$bc solid 1px;
+        .el-submenu{
+            //border-top:$bc solid 1px;
+            border-bottom: none;
+        }
+        .el-menu-item{
+            //border-top:#DFE7EF solid 1px;
+            line-height: 40px;
+            height: 40px;
+        }
+        .svg-icon{
+            font-size:18px;
+            vertical-align: -3px;
+        }
+        .menu-icon{
+            width: 18px;
+            display: inline-block;
+        }
+        $textC: #ddf4f5;
+        &.is-active{
+            position: relative;
+            &::before{
+                content: ' ';
+                display: block;
+                position: absolute;
+                top:18px;
+                width: 2px;
+                height: 20px;
+                left: 12px;
+                background-color: #2C9CEA;
+            }
+            .el-submenu__title{
+                color:$textC!important;
+                font-weight:bold;
+                i{
+                    color:$textC;
+                }
+            }
+        }
+    }
+    .menu-title{
+        >.el-menu-item{
+            line-height: 56px;
+            height: 56px;
+        }
+        .menu-padding{
+            padding-left: 10px;
+        }
+    }
+    &.el-menu--collapse{
+        .menu-padding{
+            display: none;
+        }
+    }
+    .menu-child{
+        margin-left: -10px;
+        .el-submenu__title{
+            line-height: 40px;
+            height: 40px;
+        }
+
+    }
+}
+
+.el-menu--collapse {
+    .el-submenu{
+        .el-submenu__title i {
+            display: none
+        }
+
+        .el-menu {
+            .el-menu-item {
+                margin-left: 10px;
+            }
+            .el-submenu__title {
+                margin-left: 0px;
+                i{
+                    display: block
+                }
+            }
+        }
+        .menu-child{
+            .nest-menu{
+                .el-submenu{
+                    margin-left: 10px;
+                }
+            }
+        }
+    } 
+
+}

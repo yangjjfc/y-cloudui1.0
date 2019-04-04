@@ -1,0 +1,20 @@
+export default {
+    userInfo: state => state.user.userInfo,
+    token: state => state.user.userInfo && state.user.userInfo.token, // 用户token
+    enterpriseNo: state => state.user.userInfo && state.user.userInfo.enterpriseNo,
+    userno: state => state.user.userInfo && state.user.userInfo.userNo,
+    clientId: state => state.user.userInfo && state.user.userInfo.clientId,
+    loginAccount: state => state.user.userInfo && state.user.userInfo.loginAccount,
+    userType: state => state.user.userInfo && state.user.userInfo.userType,
+    routers: state => state.permission.routers,
+    menuList: state => state.user.menuList,
+    tableConfig: state => (state.tableSet || {}).tableConfig,
+    sidebar: state => state.app.sidebar,
+    buttons: state => state.user.buttons,
+    productMsg: state => state.app.productMsg,
+    flowCheckedRow: state => state.app.flowCheckedRow,
+    addBreadcrumb: state => state.app.addBreadcrumb,
+    tempNavs: state => state.app.tempNavs,
+    activeNav: state => state.app.activeNav,
+    auth: state => state.app.auth,
+};

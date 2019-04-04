@@ -1,0 +1,17 @@
+export const CHANGEUSER = 'CHANGEUSER'; // 用户登入
+export const REFRESH = 'REFRESH'; // 用户刷新
+export const HEIGHTRESIZE = 'HEIGHTRESIZE'; // 浏览器高度
+export const CLEARSTATE = 'CLEARSTATE'; // 清除state存的信息
+export const GETROLES = 'GETROLES'; // 获取权限
+export const DEFAULTOPEN = 'DEFAULTOPEN'; // 默认展开
+export const SET_ROUTERS = 'SET_ROUTERS'; // 设置路由
+export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR'; // 设置菜单状态
+export const SETICONS = 'SETICONS'; // 设置icons
+export const GETUSERLEVEL = 'GETUSERLEVEL'; // 获取用户等级
+export const GETDELIVERYSTYLE = 'GETDELIVERYSTYLE'; // 获取配送方式
+export const GETPROVINCETREE = 'GETPROVINCETREE'; // 查询省
+export const GETEXPRESSCODE = 'GETEXPRESSCODE'; // 查询物流公司
+export const WAREHOUSELIST = 'WAREHOUSELIST'; // 查询仓库列表
+export const SETBUTTONS = 'SETBUTTONS'; // 查询仓库列表
+export const SETPRODUCT = 'SETPRODUCT'; // 产品信息
+export const SETCHECKEDROW = 'SETCHECKEDROW'; //
