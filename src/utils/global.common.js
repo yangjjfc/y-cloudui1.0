@@ -1,4 +1,6 @@
 ﻿'use strict';
+import Download from './download';
+
 /**
  * 金额格式化
  * @param {*str} n
@@ -88,33 +90,49 @@ export const format = (time, fmt) => {
 /**
  *
  * @param {*文件上传支持的类型} item
+ * @param {*定制化上传类型} type
  */
-export const getFileType = (item) => {
+export const getFileType = (item, type = 'all') => {
     if (!item) {
         return null;
-    }
-    // 判断是否是图片
-    let strFilter = ['jpeg', 'jpg', 'png', 'pic', 'bmp', 'gif'];
-    let strPostfix;
-    if (item.indexOf('.') > -1) {
-        strPostfix = (item.split('.').pop() || '').toLowerCase();
-        if (strFilter.includes(strPostfix)) {
-            return 'image';
-        } else if (['pdf'].includes(strPostfix)) {
-            return 'pdf';
-        } else if (['rar', 'zip'].includes(strPostfix)) {
-            return 'package';
-        } else {
-            return false; // 不支持的文件类型
+      }
+      let supportType = { // 支持上传的文件类型
+          img: ['image', 'pdf'],
+          file: ['doc', 'rar', 'xls', 'txt']
+        },
+        // 所支持的文件类型
+        fileTypes = [
+          ['image', 'jpg', 'jpeg', 'png', 'pic', 'bmp', 'gif'],
+          ['pdf'],
+          ['doc', 'docx'],
+          ['rar', 'zip'],
+          ['xls', 'xlsx'],
+          ['txt']
+        ],
+        getFile = null;
+      if (item.indexOf('.') > -1) {
+        let etx = (item.split('.').pop() || '').toLowerCase();
+        if (type !== 'all') { // 过滤上传的文件类型
+          fileTypes = fileTypes.filter(item => supportType[type].includes(item[0]));
         }
-    }
-    return null;
+        for (const file of fileTypes) {
+          if (file.includes(etx)) {
+            getFile = file[0];
+            break;
+          }
+        }
+      }
+      return getFile;
 };
 
 // 格式化图片
 import pdf from './img/pdf.png'; // daf
 import compressPackage from './img/package.png';
-import noimg from './img/noimage.png'; // 没有图片
+import noimg from './img/noimage.png';
+import doc from './img/doc.png'; 
+import txt from './img/txt.png'; 
+import excel from './img/excel.png'; 
+
 export let mode = process.env.NODE_ENV === 'production' ? {
     IMAGE_DOWNLOAD: 'http://dfs.test.cloudyigou.com/dfs/',
     IMAGE_UPLOAD: '/gateway/upload',
@@ -131,18 +149,27 @@ export const changeMode = (obj={IMAGE_DOWNLOAD: 'http://dfs.test.cloudyigou.com/
 export const formatFile = (item, size) => {
     let thumbnail = '';
     switch (getFileType(item)) {
-    case 'image':
-        thumbnail = mode.IMAGE_DOWNLOAD + changeImgSize(item, size);
-        break;
-    case 'pdf':
-        thumbnail = pdf;
-        break;
-    case 'package':
-        thumbnail = compressPackage;
-        break;
-    default:
-        thumbnail = noimg;
-        break;
+        case 'image':
+            thumbnail = mode.IMAGE_DOWNLOAD + changeImgSize(item, size);
+            break;
+          case 'pdf':
+            thumbnail = pdf;
+            break;
+          case 'rar':
+            thumbnail = compressPackage;
+            break;
+          case 'xls':
+            thumbnail = excel;
+            break;
+          case 'txt':
+            thumbnail = txt;
+            break;
+          case 'doc':
+            thumbnail = doc;
+            break;
+          default:
+            thumbnail = noimg;
+            break;
     }
     return thumbnail;
 };
@@ -229,17 +256,35 @@ export const objArrDeepCopy = (source, extendObj) => {
  */
 export const downloadFile = (data, strFileName) => {
     // 判断是否支持download
-    var isSupportDownload = 'download' in document.createElement('a');
-    if (isSupportDownload) {
+    let isSupportDownload = 'download' in document.createElement('a');
+    let fileName = data.split('/').reverse()[0] || strFileName;
+    let fileType = getFileType(data);
+    if (fileType === 'image' || fileType === 'pdf') {
+        var x = new XMLHttpRequest();
+        x.open('GET', data, true);
+        x.responseType = 'blob';
+        x.onload = function (e) {
+        Download(x.response, fileName);
+        };
+        x.send();
+    } else {
+        if (isSupportDownload) {
         let aLink = document.createElement('a');
         let evt = document.createEvent('MouseEvents');
         evt.initEvent('click', false, false); // initEvent 不加后两个参数在FF下会报错
         aLink.href = data + '?action=download';
-        aLink.download = strFileName;
+        aLink.download = fileName;
         aLink.dispatchEvent(evt);
-    } else {
-        window.open(data + '?action=download', '_blank');
-    }
+        } else {
+        var iframe = document.createElement('iframe');
+        iframe.src = data + '?action=download';
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+        setTimeout(() => {
+            $('iframe').remove();
+        }, 1000);
+        }
+  }
 };
 
 // 去掉多余空的children
