@@ -34,7 +34,7 @@
         "element-ui": "^2.4.6",
         "eslint": "^5.8.0",
         "eslint-plugin-vue": "^5.0.0-0",
-        "highlight.js": "^9.13.1",
+        "highlight.js": "^10.1.2",
         "jquery": "^3.3.1",
         "lodash.clonedeep": "^4.5.0",
         "lodash.debounce": "^4.0.8",
